@@ -4,20 +4,33 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    Vector3 initialPos; // ball's initial position
+    Rigidbody rigidBody;
+    public float moveSpeed = 5f;
 
-    private void Start()
+    void Start()
     {
-        initialPos = transform.position; // default it to where we first place it in the scene
+        //Fetch the Rigidbody from the GameObject with this script attached
+        rigidBody = GetComponent<Rigidbody>();
+        transform.position = new Vector3(transform.position.x, transform.position.y, Random.Range(-3.0f, 3.0f));
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void Update()
     {
-        if (collision.transform.CompareTag("Wall")) // if the ball hits a wall
+        // Debug.Log(transform.position.x);
+
+        if (transform.position.y < -10)
         {
-            GetComponent<Rigidbody>().velocity = Vector3.zero; // reset it's velocity to 0 so it doesn't move anymore
-            transform.position = initialPos; // reset it's position 
+            Destroy(gameObject);
         }
+    }
+    void FixedUpdate()
+    {
+        //Store user input as a movement vector
+        Vector3 input = new Vector3(-0.5f, 0, 0);
+
+        //Apply the movement vector to the current position, which is
+        //multiplied by deltaTime and speed for a smooth MovePosition
+        rigidBody.MovePosition(transform.position + input * Time.deltaTime * moveSpeed);
     }
 
 }
