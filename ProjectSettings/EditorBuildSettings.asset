@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 3a2f4b820ef75c242b2ef89faa2109d6
+  - enabled: 1
+    path: Assets/Scenes/DodgeBall.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Final Results.unity
+    guid: 993c751abcfe2ab44825b282b4b91a43
+  - enabled: 1
+    path: Assets/Scenes/Game over.unity
+    guid: a13cee0d9a8659b4196ea65d6548350a
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 9c4706ebcf4e82143b8b2252be546145
   m_configObjects: {}
