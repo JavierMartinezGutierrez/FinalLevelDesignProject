@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Cameras;
 
 public class Ball : MonoBehaviour
 {
     Rigidbody rigidBody;
-    //public float moveSpeed = 5f;
+    public float moveSpeed = 5f;
 
     void Start()
     {
@@ -29,9 +30,9 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Wall")
         {
-            Destroy(gameObject);
+            transform.position += Vector3.up * moveSpeed * Time.deltaTime; ;
         }
     }
 
