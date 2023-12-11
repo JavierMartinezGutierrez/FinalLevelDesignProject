@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityStandardAssets.Cameras;
 
@@ -7,7 +8,7 @@ public class Ball : MonoBehaviour
 {
     Rigidbody rigidBody;
     public float moveSpeed = 5f;
-
+    public GameObject ball;
     void Start()
     {
         //Fetch the Rigidbody from the GameObject with this script attached
@@ -25,15 +26,20 @@ public class Ball : MonoBehaviour
         //multiplied by deltaTime and speed for a smooth MovePosition
        // rigidBody.MovePosition(transform.position + input * Time.deltaTime * moveSpeed);
 
-
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Wall")
         {
-            transform.position += Vector3.up * moveSpeed * Time.deltaTime; ;
+
+            transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+            ball.transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+            
         }
+
+       
     }
 
 
