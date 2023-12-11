@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Wall
   - Ball
+  - Fire
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - pickable
   - Water
   - UI
   - 

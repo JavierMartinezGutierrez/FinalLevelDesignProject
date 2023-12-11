@@ -16,14 +16,14 @@ public class Player : MonoBehaviour
     Vector3 aimTargetInitialPosition; // initial position of the aiming gameObject which is the center of the opposite court
 
     ShotManager shotManager; // reference to the shotmanager component
-    Shot currentShot; // the current shot we are playing to acces it's attributes
-
+    
     private void Start()
     {
         animator = GetComponent<Animator>(); // referennce out animator
         aimTargetInitialPosition = aimTarget.position; // initialise the aim position to the center( where we placed it in the editor )
         shotManager = GetComponent<ShotManager>(); // accesing our shot manager component 
-        currentShot = shotManager.topSpin; // defaulting our current shot as topspin
+      
+        
     }
 
     void Update()
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             hitting = true; // we are trying to hit the ball and aim where to make it land
-            currentShot = shotManager.topSpin; // set our current shot to top spin
+            
         }
         else if (Input.GetKeyUp(KeyCode.F))
         {
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             hitting = true; // we are trying to hit the ball and aim where to make it land
-            currentShot = shotManager.flat; // set our current shot to top spin
+           
         }
         else if (Input.GetKeyUp(KeyCode.E))
         {
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Ball")) // if we collide with the ball 
         {
             Vector3 dir = aimTarget.position - transform.position; // get the direction to where we want to send the ball
-            other.GetComponent<Rigidbody>().velocity = dir.normalized * currentShot.hitForce + new Vector3(0, currentShot.upForce, 0);
+            
             //add force to the ball plus some upward force according to the shot being played
 
             Vector3 ballDir = ball.position - transform.position; // get the direction of the ball compared to us to know if it is
