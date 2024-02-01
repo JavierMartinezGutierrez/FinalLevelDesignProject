@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public Transform aimTarget; // the target where we aim to land the ball
     float speed = 3f; // move speed
     float force = 13; // ball impact force
-
+    public GameOver GameOver;
     bool hitting; // boolean to know if we are hitting the ball or not 
 
     public Transform ball; // the ball 
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
 
         }
     }
-
+   
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ball")
