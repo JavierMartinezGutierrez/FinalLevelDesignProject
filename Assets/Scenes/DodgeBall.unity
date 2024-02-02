@@ -1758,8 +1758,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 424.31934, y: 17.3}
-  m_SizeDelta: {x: 249.3614, y: 100}
+  m_AnchoredPosition: {x: 379.71637, y: -16.761082}
+  m_SizeDelta: {x: 338.5674, y: 168.1222}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1486669504
 MonoBehaviour:
@@ -1996,8 +1996,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -3.8122, y: -20.7236}
+  m_SizeDelta: {x: 330.9395, y: 137.8592}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1722502417
 MonoBehaviour:
@@ -2032,7 +2032,17 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: ' When was the Declaration of Independence signed?
+
+
+    A.   August 2,
+    1776
+
+    B. 25 January, 1769
+
+    C.  March 5, 1770
+
+    D.  January 1, 1750 '
 --- !u!222 &1722502418
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3162,31 +3172,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 740.1672
+      value: 69.36517
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -518.3287
+      value: -26.97908
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 218.2359
+      value: -51.633545
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.37262255
+      value: 0.7331154
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.087172285
+      value: -0.68009824
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.89959055
+      value: 0.0019927497
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.21045254
+      value: 0.002069441
       objectReference: {fileID: 0}
     - target: {fileID: 2983789624297992993, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_TargetTexture
