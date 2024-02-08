@@ -7,6 +7,10 @@ public class Ball : MonoBehaviour
 {
     public GameObject player;
     public GameObject questionPanel;
+    public Scoreboard scoreboard;
+    public bool answerIsCorrect = true;
+    public int pointsToAdd = 10;
+    public int pointsToSubtract = 5;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -18,7 +22,6 @@ public class Ball : MonoBehaviour
             DisplayQuestion(question, answer);
         }
     }
-
     private void DisplayQuestion(string question, string answer)
     {
         Debug.Log("Displaying question...");
@@ -48,6 +51,7 @@ public class Ball : MonoBehaviour
             Debug.LogError("Question panel reference is not set!");
         }
     }
+
     public float speed = 10f;
 
     private Rigidbody rb;
