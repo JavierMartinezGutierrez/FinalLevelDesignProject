@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,5 +39,10 @@ public class QuestionManager : MonoBehaviour
             gameObject.SetActive(false);
         }
         questionPanel.SetActive(false);
+    }
+
+    internal void DisplayQuestion()
+    {
+        throw new NotImplementedException();
     }
 }

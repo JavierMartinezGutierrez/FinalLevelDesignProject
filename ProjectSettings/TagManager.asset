@@ -7,6 +7,9 @@ TagManager:
   - Wall
   - Ball
   - Fire
+  - Ground
+  - AI
+  - Player2
   layers:
   - Default
   - TransparentFX

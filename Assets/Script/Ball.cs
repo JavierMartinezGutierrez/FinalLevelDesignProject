@@ -2,71 +2,68 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject questionPanel;
+    public QuestionManager questionManager;
+    public Transform player2Transform; // Position of the second player or AI
     public Scoreboard scoreboard;
-    public bool answerIsCorrect = true;
-    public int pointsToAdd = 10;
-    public int pointsToSubtract = 5;
+    public float bounceForce = 10f;
+
+    private bool ballCaught = false;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == player && questionPanel != null)
+        if (!collision.gameObject.CompareTag("Ground"))
         {
-            // Generate a random question and answer for demonstration
-            string question = "What is 2 + 2?";
-            string answer = "4";
-            DisplayQuestion(question, answer);
-        }
-    }
-    private void DisplayQuestion(string question, string answer)
-    {
-        Debug.Log("Displaying question...");
-        if (questionPanel != null)
-        {
-            // Get the text components of the question panel
-            Text questionText = questionPanel.GetComponentInChildren<Text>();
-            Text answerText = questionPanel.transform.Find("AnswerText").GetComponent<Text>();
+            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("AI") || collision.gameObject.CompareTag("Player2"))
+            {
+                bool answerIsCorrect = /* Check if the answer is correct */ true; // Change this based on the player's answer
 
-            if (questionText == null)
-                Debug.LogError("Question text component not found!");
-            if (answerText == null)
-                Debug.LogError("Answer text component not found!");
+                if (answerIsCorrect)
+                {
+                    // Ball bounces back to the respective player
+                    Rigidbody rb = GetComponent<Rigidbody>();
+                    rb.velocity = (collision.gameObject.transform.position - transform.position).normalized * bounceForce;
 
-            // Set the question and answer text
-            if (questionText != null)
-                questionText.text = question;
-
-            if (answerText != null)
-                answerText.text = answer;
-
-            // Show the question panel
-            questionPanel.SetActive(true);
+                    // Update scoreboard if needed
+                    if (collision.gameObject.CompareTag("Player"))
+                    {
+                        scoreboard.AddPlayerPoints();
+                    }
+                    else if (collision.gameObject.CompareTag("AI"))
+                    {
+                        scoreboard.AddAIPoints();
+                    }
+                    else if (collision.gameObject.CompareTag("Player2"))
+                    {
+                        scoreboard.AddPlayer2Points();
+                    }
+                }
+                else
+                {
+                    // Ball is dead if the answer is wrong
+                    ballCaught = false;
+                }
+            }
         }
         else
         {
-            Debug.LogError("Question panel reference is not set!");
+            // Display multiple-choice question when the ball drops
+            questionManager.DisplayQuestion();
         }
     }
 
-    public float speed = 10f;
-
-    private Rigidbody rb;
-
-    void Start()
+    // Called when the ball is caught by the AI or second player
+    public void BallCaught()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * speed; // Initial movement in forward direction
+        ballCaught = true;
     }
 
-    void FixedUpdate()
+    // Called when the ball is not caught by anyone
+    public void DeadBall()
     {
-        // Prevent bouncing off walls by adjusting velocity
-        Vector3 vel = rb.velocity;
-        vel.y = 0f; // Ensure no vertical movement
-        rb.velocity = vel;
+        ballCaught = false;
     }
 }
