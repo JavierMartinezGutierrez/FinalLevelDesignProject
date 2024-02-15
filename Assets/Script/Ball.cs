@@ -11,59 +11,37 @@ public class Ball : MonoBehaviour
     public Scoreboard scoreboard;
     public float bounceForce = 10f;
 
-    private bool ballCaught = false;
+  
 
+  
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Ground"))
+        // Check if the collision is with the player
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("AI") || collision.gameObject.CompareTag("Player2"))
-            {
-                bool answerIsCorrect = /* Check if the answer is correct */ true; // Change this based on the player's answer
-
-                if (answerIsCorrect)
-                {
-                    // Ball bounces back to the respective player
-                    Rigidbody rb = GetComponent<Rigidbody>();
-                    rb.velocity = (collision.gameObject.transform.position - transform.position).normalized * bounceForce;
-
-                    // Update scoreboard if needed
-                    if (collision.gameObject.CompareTag("Player"))
-                    {
-                        scoreboard.AddPlayerPoints();
-                    }
-                    else if (collision.gameObject.CompareTag("AI"))
-                    {
-                        scoreboard.AddAIPoints();
-                    }
-                    else if (collision.gameObject.CompareTag("Player2"))
-                    {
-                        scoreboard.AddPlayer2Points();
-                    }
-                }
-                else
-                {
-                    // Ball is dead if the answer is wrong
-                    ballCaught = false;
-                }
-            }
+            // Handle collision with player
+            Debug.Log("Ball collided with Player!");
+            // Implement player collision logic here
         }
-        else
+        // Check if the collision is with the AI
+        else if (collision.gameObject.CompareTag("AI"))
         {
-            // Display multiple-choice question when the ball drops
-            questionManager.DisplayQuestion();
+            // Handle collision with AI
+            Debug.Log("Ball collided with AI!");
+            // Implement AI collision logic here
         }
-    }
+        // Check if the collision is with Player2
+        else if (collision.gameObject.CompareTag("Player2"))
+        {
+            // Handle collision with Player2
+            Debug.Log("Ball collided with Player2!");
+            // Implement Player2 collision logic here
+        }
+        // You can add more conditions as needed
 
-    // Called when the ball is caught by the AI or second player
-    public void BallCaught()
-    {
-        ballCaught = true;
-    }
-
-    // Called when the ball is not caught by anyone
-    public void DeadBall()
-    {
-        ballCaught = false;
+        // You can also access information about the collision
+        ContactPoint contact = collision.contacts[0];
+        Debug.Log("Collision point: " + contact.point);
     }
 }
+
