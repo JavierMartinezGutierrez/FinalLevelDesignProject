@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Scoreboard : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Scoreboard : MonoBehaviour
     private int computerPlayerScore = 0;
     private int secondPlayerScore = 0;
     private bool isRoundOver = false;
+    internal IEnumerable<object> questions;
 
     void Start()
     {
@@ -49,7 +51,7 @@ public class Scoreboard : MonoBehaviour
 
     public void ComputerPlayerHit()
     {
-        computerPlayerScore++;
+        object value = playerScore++;
         UpdateScoreText();
     }
 
@@ -62,7 +64,7 @@ public class Scoreboard : MonoBehaviour
     void UpdateScoreText()
     {
         playerScoreText.text = "Player Score: " + playerScore.ToString();
-        computerPlayerScoreText.text = "Computer Player Score: " + computerPlayerScore.ToString();
+        computerPlayerScoreText.text = "Computer Player Score: " + computerPlayerScoreText.ToString();
         secondPlayerScoreText.text = "Second Player Score: " + secondPlayerScore.ToString();
     }
 
@@ -71,21 +73,20 @@ public class Scoreboard : MonoBehaviour
         isRoundOver = true;
 
         // Determine winner
-        if (playerScore > computerPlayerScore && playerScore > secondPlayerScore)
+        if (playerScore > int.Parse(computerPlayerScoreText.text) && playerScore > int.Parse(secondPlayerScoreText.text))
         {
-            Debug.Log("Player wins!");
-            // Implement win logic for story mode
+            // Player wins
         }
-        else if (computerPlayerScore > playerScore && computerPlayerScore > secondPlayerScore)
+        if (int.Parse(playerScoreText.text) > computerPlayerScore && int.Parse(playerScoreText.text) > secondPlayerScore)
         {
-            Debug.Log("Computer Player wins!");
-            // Implement lose logic for story mode
+            // Player wins
         }
         else
         {
             Debug.Log("It's a tie!");
             // Handle tie condition
         }
+        SceneManager.LoadScene("ResultsScreen");
     }
 
     internal void AddPlayerPoints()

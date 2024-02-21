@@ -5,34 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI;
+    public GameObject pauseMenuPanel;
 
-    void Update()
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (pauseMenuUI.activeSelf)
-                Resume();
-            else
-                Pause();
-        }
+        // Hide the pause menu panel when the scene starts
+        pauseMenuPanel.SetActive(false);
     }
 
-    public void Resume()
+    public void TogglePauseMenu()
     {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        // Toggle the visibility of the pause menu panel
+        pauseMenuPanel.SetActive(!pauseMenuPanel.activeSelf);
+
+        // Pause or unpause the game
+        Time.timeScale = pauseMenuPanel.activeSelf ? 0 : 1;
     }
 
-    void Pause()
+    public void ReturnToDodgeballLevel()
     {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        // Load the Dodgeball level
+        SceneManager.LoadScene("DodgeballLevel");
     }
 
-    public void ReturnToMainMenu()
+    public void QuitGame()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); // Replace "MainMenu" with the name of your main menu scene
+        // Quit the game
+        Application.Quit();
     }
 }
