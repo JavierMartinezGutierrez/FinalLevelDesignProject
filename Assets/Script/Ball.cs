@@ -1,47 +1,70 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
     public QuestionManager questionManager;
-    public Transform player2Transform; // Position of the second player or AI
     public Scoreboard scoreboard;
     public float bounceForce = 10f;
+    public string[] questions;
+    public string[] answers;
+    private bool ballCaught;
 
-  
+    private string GetRandomQuestion()
+    {
+        int index = UnityEngine.Random.Range(0, questions.Length);
+        return questions[index];
+    }
 
-  
     private void OnCollisionEnter(Collision collision)
     {
-        // Check if the collision is with the player
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            // Handle collision with player
-            Debug.Log("Ball collided with Player!");
-            // Implement player collision logic here
+            // Display a random question when the ball drops
+            string question = GetRandomQuestion();
+            questionManager.DisplayQuestion(question);
         }
-        // Check if the collision is with the AI
-        else if (collision.gameObject.CompareTag("AI"))
+        else if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("AI") || collision.gameObject.CompareTag("Player2"))
         {
-            // Handle collision with AI
-            Debug.Log("Ball collided with AI!");
-            // Implement AI collision logic here
-        }
-        // Check if the collision is with Player2
-        else if (collision.gameObject.CompareTag("Player2"))
-        {
-            // Handle collision with Player2
-            Debug.Log("Ball collided with Player2!");
-            // Implement Player2 collision logic here
-        }
-        // You can add more conditions as needed
+            string playerAnswer = "Your answer here";
+            string correctAnswer = "0,99";
+            bool answerIsCorrect = CheckAnswer(playerAnswer, correctAnswer);
+            
 
-        // You can also access information about the collision
-        ContactPoint contact = collision.contacts[0];
-        Debug.Log("Collision point: " + contact.point);
+
+            if (answerIsCorrect)
+            {
+                // Ball bounces back to the respective player
+                Rigidbody rb = GetComponent<Rigidbody>();
+                rb.velocity = (collision.gameObject.transform.position - transform.position).normalized * bounceForce;
+
+                // Update scoreboard if needed
+                if (collision.gameObject.CompareTag("Player"))
+                {
+                    scoreboard.AddPlayerPoints();
+                }
+                else if (collision.gameObject.CompareTag("AI"))
+                {
+                    scoreboard.AddAIPoints();
+                }
+                else if (collision.gameObject.CompareTag("Player2"))
+                {
+                    scoreboard.AddPlayer2Points();
+                }
+            }
+            else
+            {
+                // Ball is dead if the answer is wrong
+                ballCaught = false;
+            }
+        }
+    }
+
+    private bool CheckAnswer(string playerAnswer, string correctAnswer)
+    {
+        // Implement logic for checking answers here
+        throw new System.NotImplementedException();
     }
 }
+
+
 

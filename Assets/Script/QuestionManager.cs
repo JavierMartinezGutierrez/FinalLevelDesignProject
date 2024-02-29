@@ -45,4 +45,9 @@ public class QuestionManager : MonoBehaviour
     {
         throw new NotImplementedException();
     }
+
+    internal void DisplayQuestion(string question)
+    {
+        throw new NotImplementedException();
+    }
 }
