@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public QuestionManager questionManager;
+    public QuizManager quizManager;
     public Scoreboard scoreboard;
     public float bounceForce = 10f;
     public string[] questions;
@@ -21,14 +21,16 @@ public class Ball : MonoBehaviour
         {
             // Display a random question when the ball drops
             string question = GetRandomQuestion();
-            questionManager.DisplayQuestion(question);
+            quizManager.DisplayQuestion(question);
         }
         else if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("AI") || collision.gameObject.CompareTag("Player2"))
         {
             string playerAnswer = "Your answer here";
             string correctAnswer = "0,99";
             bool answerIsCorrect = CheckAnswer(playerAnswer, correctAnswer);
-            
+
+            Debug.Log("Ball collided with the ground");
+
 
 
             if (answerIsCorrect)

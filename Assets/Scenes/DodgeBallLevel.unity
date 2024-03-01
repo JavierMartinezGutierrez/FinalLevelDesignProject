@@ -522,7 +522,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2106508396}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: QuestionManager, Assembly-CSharp
         m_MethodName: CheckAnswer
         m_Mode: 6
@@ -582,41 +582,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1975341726346955767, guid: fbd6aa3ab0babd14087d9bc772380a34, type: 3}
   m_PrefabInstance: {fileID: 315424090}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &129854773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129854761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 925edc64a7b21584eb2c6fa67aba4685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ball1: {fileID: 2106508384}
-  Ball2: {fileID: 1681468201}
-  Ball3: {fileID: 2118974125}
-  interactable: 1
-  pickedup: 1
-  objRigidbody: {fileID: 9033883251601058878, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
-  throwAmount: 0
---- !u!114 &129854775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129854761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbbc3b3220f14ce4cb43c7f153dbad1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canHold: 1
-  item: {fileID: 2106508384}
-  tempParent: {fileID: 2118974125}
-  isHolding: 1
 --- !u!114 &129854776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,6 +599,23 @@ MonoBehaviour:
   ballLayer:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!54 &129854777 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1975341726344034851, guid: fbd6aa3ab0babd14087d9bc772380a34, type: 3}
+  m_PrefabInstance: {fileID: 315424090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &129854780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129854761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d85e1beb2334d843a186e94e693411e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &154297241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5489842216799938980, guid: 575df62f1c0176e45b54bf7d7b1ab6c4, type: 3}
@@ -644,41 +626,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5489842216799689760, guid: 575df62f1c0176e45b54bf7d7b1ab6c4, type: 3}
   m_PrefabInstance: {fileID: 283542990700172346}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &154297253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154297241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 925edc64a7b21584eb2c6fa67aba4685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ball1: {fileID: 2106508384}
-  Ball2: {fileID: 1681468201}
-  Ball3: {fileID: 2118974125}
-  interactable: 1
-  pickedup: 1
-  objRigidbody: {fileID: 9033883251601058878, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
-  throwAmount: 0
---- !u!114 &154297255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154297241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbbc3b3220f14ce4cb43c7f153dbad1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canHold: 1
-  item: {fileID: 1681468201}
-  tempParent: {fileID: 2118974125}
-  isHolding: 1
 --- !u!114 &154297256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +643,18 @@ MonoBehaviour:
   ballLayer:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &154297258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154297241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d85e1beb2334d843a186e94e693411e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &237090777 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 679817823886801771, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
@@ -883,17 +842,19 @@ PrefabInstance:
       propertyPath: aimTarget
       value: 
       objectReference: {fileID: 154297242}
+    - target: {fileID: 7818906281703219449, guid: fbd6aa3ab0babd14087d9bc772380a34, type: 3}
+      propertyPath: throwPoint
+      value: 
+      objectReference: {fileID: 2106508390}
     m_RemovedComponents:
     - {fileID: 5786871838046049033, guid: fbd6aa3ab0babd14087d9bc772380a34, type: 3}
+    - {fileID: 3857701377120725632, guid: fbd6aa3ab0babd14087d9bc772380a34, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1975341726347214451, guid: fbd6aa3ab0babd14087d9bc772380a34, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 129854773}
-    - targetCorrespondingSourceObject: {fileID: 1975341726347214451, guid: fbd6aa3ab0babd14087d9bc772380a34, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 129854775}
+      insertIndex: 5
+      addedObject: {fileID: 129854780}
     - targetCorrespondingSourceObject: {fileID: 1975341726347214451, guid: fbd6aa3ab0babd14087d9bc772380a34, type: 3}
       insertIndex: -1
       addedObject: {fileID: 129854776}
@@ -1121,7 +1082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510297808}
   m_LocalRotation: {x: 0.087172285, y: 0.89959055, z: 0.21045254, w: -0.37262255}
-  m_LocalPosition: {x: 81.13757, y: 0.43486023, z: -35.97531}
+  m_LocalPosition: {x: 307.57135, y: -255.247, z: -304.55304}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2796,6 +2757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sphere (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
+      propertyPath: m_TagString
+      value: Throwable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9092046087927871729, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
     m_RemovedGameObjects: []
@@ -2809,7 +2774,7 @@ PrefabInstance:
       addedObject: {fileID: 2118974133}
     - targetCorrespondingSourceObject: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2118974132}
+      addedObject: {fileID: 2118974141}
     - targetCorrespondingSourceObject: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2118974140}
@@ -2819,23 +2784,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
   m_PrefabInstance: {fileID: 1866835539}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1681468208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681468201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626f3303247aba64c9f91489baa61fb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questionPanel: {fileID: 2023347856}
-  questionText: {fileID: 1527196960}
-  answerText: {fileID: 1382235043}
-  currentScore: 0
-  maxScore: 10
 --- !u!114 &1681468209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2848,7 +2796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c37574602b12784282290b3154b82eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionManager: {fileID: 1681468208}
+  quizManager: {fileID: 0}
   scoreboard: {fileID: 1481720720}
   bounceForce: 10
   questions: []
@@ -2961,6 +2909,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1681468217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681468201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f03003befd12645aa29a04c1ca75e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectRigidbody: {fileID: 129854777}
+  throwForce: 10
 --- !u!1 &1743981792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3497,6 +3459,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sphere
       objectReference: {fileID: 0}
+    - target: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
+      propertyPath: m_TagString
+      value: Throwable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9092046087927871729, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
     m_RemovedGameObjects: []
@@ -3510,7 +3476,7 @@ PrefabInstance:
       addedObject: {fileID: 1681468209}
     - targetCorrespondingSourceObject: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1681468208}
+      addedObject: {fileID: 1681468217}
     - targetCorrespondingSourceObject: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1681468216}
@@ -3773,23 +3739,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 687352699672910626, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
   m_PrefabInstance: {fileID: 9116581434485911605}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2106508396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106508384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626f3303247aba64c9f91489baa61fb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questionPanel: {fileID: 2023347856}
-  questionText: {fileID: 1527196960}
-  answerText: {fileID: 1382235043}
-  currentScore: 0
-  maxScore: 10
 --- !u!114 &2106508397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3802,7 +3751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c37574602b12784282290b3154b82eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionManager: {fileID: 2106508396}
+  quizManager: {fileID: 0}
   scoreboard: {fileID: 1481720720}
   bounceForce: 10
   questions: []
@@ -3915,28 +3864,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &2118974125 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
-  m_PrefabInstance: {fileID: 1624671226}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2118974132
+--- !u!114 &2106508404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118974125}
+  m_GameObject: {fileID: 2106508384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626f3303247aba64c9f91489baa61fb1, type: 3}
+  m_Script: {fileID: 11500000, guid: e2f03003befd12645aa29a04c1ca75e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionPanel: {fileID: 2023347856}
-  questionText: {fileID: 1527196960}
-  answerText: {fileID: 1382235043}
-  currentScore: 0
-  maxScore: 10
+  objectRigidbody: {fileID: 129854777}
+  throwForce: 10
+--- !u!1 &2118974125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
+  m_PrefabInstance: {fileID: 1624671226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2118974133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3949,7 +3895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c37574602b12784282290b3154b82eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionManager: {fileID: 2118974132}
+  quizManager: {fileID: 0}
   scoreboard: {fileID: 1481720720}
   bounceForce: 10
   questions: []
@@ -4062,6 +4008,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2118974141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118974125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f03003befd12645aa29a04c1ca75e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectRigidbody: {fileID: 129854777}
+  throwForce: 10
 --- !u!1 &2135172468
 GameObject:
   m_ObjectHideFlags: 0
@@ -4573,15 +4533,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 506969400064165086, guid: 575df62f1c0176e45b54bf7d7b1ab6c4, type: 3}
+    - {fileID: 7119991225527303511, guid: 575df62f1c0176e45b54bf7d7b1ab6c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5489842216799938980, guid: 575df62f1c0176e45b54bf7d7b1ab6c4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 154297253}
-    - targetCorrespondingSourceObject: {fileID: 5489842216799938980, guid: 575df62f1c0176e45b54bf7d7b1ab6c4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 154297255}
+      insertIndex: 5
+      addedObject: {fileID: 154297258}
     - targetCorrespondingSourceObject: {fileID: 5489842216799938980, guid: 575df62f1c0176e45b54bf7d7b1ab6c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 154297256}
@@ -4642,17 +4600,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1231984590750363360, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 314.67468
+      value: 307.57135
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -260.9193
+      value: -255.247
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -296.4497
+      value: -304.55304
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4673,6 +4635,10 @@ PrefabInstance:
     - target: {fileID: 2983789624297992993, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739602269924155731, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 4634426256995364207, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalScale.x
@@ -4697,6 +4663,18 @@ PrefabInstance:
     - target: {fileID: 4634426256995364207, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.z
       value: -49.000225
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851104265282114481, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165821097635579920, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461626270867050773, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 5712820291914470621, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4742,6 +4720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Volleyball level
       objectReference: {fileID: 0}
+    - target: {fileID: 6718204463481212070, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 7127460285995461160, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4786,6 +4768,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7896744167189282654, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378816422322875803, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9f93f63d068b08c459038c40fce897d8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7642285943171097298, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
@@ -4879,6 +4869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sphere
       objectReference: {fileID: 0}
+    - target: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
+      propertyPath: m_TagString
+      value: Throwable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4891,7 +4885,7 @@ PrefabInstance:
       addedObject: {fileID: 2106508397}
     - targetCorrespondingSourceObject: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2106508396}
+      addedObject: {fileID: 2106508404}
     - targetCorrespondingSourceObject: {fileID: 2195147599850029076, guid: 482417a0edd2e714cb508eaedc56b274, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2106508403}
