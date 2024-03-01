@@ -5,11 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Ball
+  - Fire
+  - Ground
+  - AI
+  - Player2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - pickable
   - Water
   - UI
   - 
