@@ -23,5 +23,10 @@ public class MainMenu2: MonoBehaviour
     {
         SceneManager.LoadScene("PauseMenu");
     }
+    public void BackButton()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
 }
 
