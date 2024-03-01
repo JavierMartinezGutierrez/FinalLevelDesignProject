@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu2: MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
-    public void PlayGame()
+    public void PlayButton()
     {
         SceneManager.LoadScene("DodgeBall");
     }
@@ -15,18 +15,16 @@ public class MainMenu2: MonoBehaviour
     }
     public void QuitGame()
     {
-        Debug.Log("QUIT!");
-        Application.Quit(); 
-
+        SceneManager.LoadScene("Menu");
     }
     public void PauseGame()
     {
-        SceneManager.LoadScene("PauseMenu");
+        SceneManager.LoadScene("Menu");
     }
     public void BackButton()
     {
         SceneManager.LoadScene("Menu");
     }
-
+    
 }
 
