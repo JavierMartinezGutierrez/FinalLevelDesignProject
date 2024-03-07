@@ -1,72 +1,29 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
+
 {
-    public QuizManager quizManager;
-    public Scoreboard scoreboard;
-    public float bounceForce = 10f;
-    public string[] questions;
-    public string[] answers;
-    private bool ballCaught;
-
-    private string GetRandomQuestion()
+    void Start()
     {
-        int index = UnityEngine.Random.Range(0, questions.Length);
-        return questions[index];
+        // Add initialization code here
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void Update()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            // Display a random question when the ball drops
-            string question = GetRandomQuestion();
-            quizManager.DisplayQuestion(question);
-        }
-        else if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("AI") || collision.gameObject.CompareTag("Player2"))
-        {
-            string playerAnswer = "Your answer here";
-            string correctAnswer = "0,99";
-            bool answerIsCorrect = CheckAnswer(playerAnswer, correctAnswer);
-
-            Debug.Log("Ball collided with the ground");
-
-
-
-            if (answerIsCorrect)
-            {
-                // Ball bounces back to the respective player
-                Rigidbody rb = GetComponent<Rigidbody>();
-                rb.velocity = (collision.gameObject.transform.position - transform.position).normalized * bounceForce;
-
-                // Update scoreboard if needed
-                if (collision.gameObject.CompareTag("Player"))
-                {
-                    scoreboard.AddPlayerPoints();
-                }
-                else if (collision.gameObject.CompareTag("AI"))
-                {
-                    scoreboard.AddAIPoints();
-                }
-                else if (collision.gameObject.CompareTag("Player2"))
-                {
-                    scoreboard.AddPlayer2Points();
-                }
-            }
-            else
-            {
-                // Ball is dead if the answer is wrong
-                ballCaught = false;
-            }
-        }
+        // Add update code here
     }
 
-    private bool CheckAnswer(string playerAnswer, string correctAnswer)
+    void OnCollisionEnter(Collision collision)
     {
-        // Implement logic for checking answers here
-        throw new System.NotImplementedException();
+        // Handle collision events here
     }
+
+    internal bool IsHeld()
+    {
+        throw new NotImplementedException();
+    }
+
+    // Add other methods or variables as needed
 }
-
-
-

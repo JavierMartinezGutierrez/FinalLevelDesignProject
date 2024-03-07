@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
@@ -7,13 +8,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     [RequireComponent(typeof(ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
-        private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
-        private Transform m_Cam;                  // A reference to the main camera in the scenes transform
-        private Vector3 m_CamForward;             // The current forward direction of the camera
-        private Vector3 m_Move1;
+        private ThirdPersonCharacter m_Character;
+        private Transform m_Cam;
+        private Vector3 m_Move;
+        private bool m_Jump;
+        private bool m_Catch;
+        private bool m_Throw;
 
-        private bool m_Jump1;                      // the world-relative desired move direction, calculated from the camForward and user input.
-                                                   // private bool m_Jump2;
+        [SerializeField] private int playerNumber = 1; // Define player number for this controller
 
         private void Start()
         {
@@ -26,57 +28,92 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 Debug.LogWarning(
                     "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.", gameObject);
-                // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
             }
 
-            // get the third person character ( this should never be null due to require component )
+            // get the third person character (this should never be null due to require component)
             m_Character = GetComponent<ThirdPersonCharacter>();
         }
 
-
         private void Update()
         {
-
-            if (!m_Jump1)
+            if (!m_Jump)
             {
-                m_Jump1 = CrossPlatformInputManager.GetButtonDown("Jump1");
+                // Detect jump input for the corresponding player
+                if (CrossPlatformInputManager.GetButtonDown("Jump" + playerNumber))
+                {
+                    m_Jump = true;
+                }
+            }
+
+            if (!m_Catch)
+            {
+                // Detect catch input for the corresponding player
+                if (CrossPlatformInputManager.GetButtonDown("Catch" + playerNumber))
+                {
+                    m_Catch = true;
+                }
+            }
+
+            if (!m_Throw)
+            {
+                // Detect throw input for the corresponding player
+                if (CrossPlatformInputManager.GetButtonDown("Throw" + playerNumber))
+                {
+                    m_Throw = true;
+                }
             }
         }
 
-
-        // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
-            // read inputs
+            // Read input for movement for the corresponding player
+            float h = CrossPlatformInputManager.GetAxis("Horizontal" + playerNumber);
+            float v = CrossPlatformInputManager.GetAxis("Vertical" + playerNumber);
 
-            float h1 = CrossPlatformInputManager.GetAxis("Horizontal1");
-            float v1 = CrossPlatformInputManager.GetAxis("Vertical1");
-            bool crouch = Input.GetKey(KeyCode.C);
-
-            // calculate move direction to pass to character
+            // Calculate move direction to pass to character
             if (m_Cam != null)
             {
-                // calculate camera relative direction to move:
-                m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-
-                m_Move1 = v1 * m_CamForward + h1 * m_Cam.right;
+                // Calculate camera relative direction to move
+                Vector3 camForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+                m_Move = v * camForward + h * m_Cam.right;
             }
             else
             {
-                // we use world-relative directions in the case of no main camera
-
-                m_Move1 = v1 * Vector3.forward + h1 * Vector3.right;
+                // Use world-relative directions in the case of no main camera
+                m_Move = v * Vector3.forward + h * Vector3.right;
             }
-#if !MOBILE_INPUT
-            // walk speed multiplier
-            if (Input.GetKey(KeyCode.LeftShift)) m_Move1 *= 0.5f;
-#endif
 
-            // pass all parameters to the character control script
-            m_Character.Move(m_Move1, crouch, m_Jump1);
-            m_Jump1 = false;
+            // Pass parameters to the character control script
+            m_Character.Move(m_Move, false, m_Jump);
 
+            // Handle catch and throw actions
+            if (m_Catch)
+            {
+                // Logic to try catching the ball
+                TryCatchBall();
+                m_Catch = false; // Reset catch flag
+            }
+
+            if (m_Throw)
+            {
+                // Logic to throw the ball
+                ThrowBall();
+                m_Throw = false; // Reset throw flag
+            }
+
+            m_Jump = false; // Reset jump flag
+        }
+
+        private void TryCatchBall()
+        {
+            // Logic to detect nearby ball and attempt to catch it
+            // You can implement your own logic here
+        }
+
+        private void ThrowBall()
+        {
+            // Logic to throw the ball
+            // You can implement your own logic here
         }
     }
 }
-
