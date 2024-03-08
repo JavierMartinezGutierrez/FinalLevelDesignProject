@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Player1Controller : MonoBehaviour
 {
-    public KeyCode throwKey = KeyCode.Space;
-    public KeyCode catchKey = KeyCode.LeftControl;
-    public KeyCode grabKey = KeyCode.LeftShift; // Add grab key
+    public KeyCode throwKey = KeyCode.Space; // Example throw key for player 1
+    public KeyCode catchKey = KeyCode.LeftControl; // Example catch key for player 1
+    public string grabButton = "Grab";
 
     private Rigidbody rb;
     private bool isHoldingBall = false;
@@ -20,33 +20,26 @@ public class Player1Controller : MonoBehaviour
 
     private void Update()
     {
-        // Input detection for throw, catch, and grab actions for Player 1
+        // Input detection for throw and catch actions for Player 1
         if (Input.GetKeyDown(throwKey) && isHoldingBall)
         {
             ThrowBall();
         }
         else if (Input.GetKeyDown(catchKey) && !isHoldingBall)
         {
-            throw new NotImplementedException();
+            TryCatchBall();
         }
-        else if (Input.GetKeyDown(grabKey) && !isHoldingBall)
-        {
-            TryGrabBall(); // Call method for grab action
-        }
+    }
+
+    private void TryCatchBall()
+    {
+        // Logic to detect nearby ball and pick it up for Player 1
+        // This part can be similar to the previous script
     }
 
     private void ThrowBall()
     {
-        throw new NotImplementedException();
+        // Logic to throw the held ball for Player 1
+        // This part can be similar to the previous script
     }
-
-    private void TryGrabBall()
-    {
-        // Logic to detect and grab nearby ball for Player 1
-        // This could be similar to the logic in TryCatchBall()
-    }
-
-    // Other methods for TryCatchBall(), ThrowBall(), and other functionalities...
 }
-
-

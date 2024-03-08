@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Player2Controller : MonoBehaviour
 {
-    public KeyCode throwKey = KeyCode.Return; // Example throw key for Player 2
-    public KeyCode catchKey = KeyCode.RightControl; // Example catch key for Player 2
-    public KeyCode grabKey = KeyCode.RightShift; // Example grab key for Player 2
-
+    public KeyCode throwKey = KeyCode.Return; // Example throw key for player 2
+    public KeyCode catchKey = KeyCode.RightControl; // Example catch key for player 2
+    public string grabButton = "Fire2";
     private Rigidbody rb;
     private bool isHoldingBall = false;
     private GameObject heldBall;
+    private KeyCode grabKey;
 
     private void Start()
     {
@@ -30,27 +30,25 @@ public class Player2Controller : MonoBehaviour
         }
         else if (Input.GetKeyDown(grabKey) && !isHoldingBall)
         {
-            TryGrabBall(); // Call method for grab action
+            TryGrabBall();
         }
     }
 
     private void TryCatchBall()
     {
-        // Logic to detect and catch nearby ball for Player 2
-        // Similar to TryCatchBall() in Player1Controller
+        // Logic to detect nearby ball and pick it up for Player 2
+        // This part can be similar to the previous script
     }
 
     private void ThrowBall()
     {
         // Logic to throw the held ball for Player 2
-        // Similar to ThrowBall() in Player1Controller
+        // This part can be similar to the previous script
     }
 
     private void TryGrabBall()
     {
-        // Logic to detect and grab nearby ball for Player 2
-        // Similar to TryGrabBall() in Player1Controller
+        // Logic to grab the nearby ball for Player 2
+        // This part can be similar to the previous script
     }
-
-    // Other methods for TryCatchBall(), ThrowBall(), and other functionalities...
 }
