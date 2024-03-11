@@ -7,12 +7,13 @@ public class Ball : MonoBehaviour
 {
     void Start()
     {
-        // Add initialization code here
+        GetComponent<Rigidbody>().velocity = new Vector3(3f, 0f, 0f); // Adjust the velocity as needed
+
     }
 
     void Update()
     {
-        // Add update code here
+        GetComponent<Rigidbody>().AddForce(new Vector3(3f, 0f, 0f)); // Adjust the force as needed
     }
 
     void OnCollisionEnter(Collision collision)
