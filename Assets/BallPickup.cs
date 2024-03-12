@@ -3,75 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class BallPickup : MonoBehaviour
 {
-    // Reference to the question canvas
-    public GameObject questionCanvas;
+    // Variables to store references to both player GameObjects
+    public GameObject player1;
+    public GameObject player2;
 
-    // Array of questions
-    public string[] questions;
+    // Variable to store the distance threshold for picking up the ball
+    public float pickupDistance = 2f;
 
-    // UI Text element to display the question
-    public Text questionText;
+    // Variable to keep track of which player holds the ball
+    private GameObject currentPlayer;
 
-    // Player controllers
-    public GameObject player1Controller;
-    public GameObject player2Controller;
+    // Variable to check if the ball is currently picked up
+    private bool isPickedUp = false;
 
-    // Reference to the ball
-    public GameObject ball;
-
-    private void OnTriggerEnter(Collider other)
+    void Update()
     {
-        // Check if the player picks up the ball
-        if (other.CompareTag("Player"))
+        // Check if the ball is not currently picked up
+        if (!isPickedUp)
         {
-            // Randomly select a question from the array
-            string randomQuestion = questions[Random.Range(0, questions.Length)];
+            // Calculate the distance between the ball and each player
+            float distanceToPlayer1 = Vector3.Distance(transform.position, player1.transform.position);
+            float distanceToPlayer2 = Vector3.Distance(transform.position, player2.transform.position);
 
-            // Display the random question on the UI canvas
-            questionText.text = randomQuestion;
-            questionCanvas.SetActive(true);
-
-            // Pause the game or disable player movement while the question is displayed
-            Time.timeScale = 0f;
-        }
-    }
-
-    // Call this method when the player answers the question
-    public void AnswerQuestion(bool correctAnswer)
-    {
-        if (correctAnswer)
-        {
-            // Give the ball to the current player
-            if (player1Controller.GetComponent<PlayerController>().hasBall)
+            // If the distance is less than the pickup distance threshold and the player presses a key (e.g., "E"), pick up the ball
+            if (distanceToPlayer1 < pickupDistance && Input.GetKeyDown(KeyCode.E))
             {
-                player1Controller.GetComponent<PlayerController>().hasBall = false;
-                player2Controller.GetComponent<PlayerController>().hasBall = true;
+                PickUp(player1);
             }
-            else
+            else if (distanceToPlayer2 < pickupDistance && Input.GetKeyDown(KeyCode.Return)) // Assuming Return key is used for player 2
             {
-                player1Controller.GetComponent<PlayerController>().hasBall = true;
-                player2Controller.GetComponent<PlayerController>().hasBall = false;
+                PickUp(player2);
             }
         }
         else
         {
-            // Give the ball to the other player
-            if (player1Controller.GetComponent<PlayerController>().hasBall)
-            {
-                player1Controller.GetComponent<PlayerController>().hasBall = false;
-                player2Controller.GetComponent<PlayerController>().hasBall = true;
-            }
-            else
-            {
-                player1Controller.GetComponent<PlayerController>().hasBall = true;
-                player2Controller.GetComponent<PlayerController>().hasBall = false;
-            }
+            // If the ball is picked up, set its position to the player's position
+            transform.position = currentPlayer.transform.position;
         }
+    }
 
-        // Hide the question canvas and resume the game
-        questionCanvas.SetActive(false);
-        Time.timeScale = 1f;
+    void PickUp(GameObject player)
+    {
+        // Set isPickedUp flag to true
+        isPickedUp = true;
+
+        // Disable the ball's Rigidbody so it doesn't fall or collide with other objects
+        GetComponent<Rigidbody>().isKinematic = true;
+
+        // Attach the ball to the player
+        transform.SetParent(player.transform);
+
+        // Set the current player who holds the ball
+        currentPlayer = player;
     }
 }
