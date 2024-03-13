@@ -604,6 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupCanvas: {fileID: 775984792}
+  throwForce: 10
 --- !u!1 &478808964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,7 +1098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -3}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1051535460
@@ -1269,6 +1270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupCanvas: {fileID: 775984792}
+  throwForce: 10
 --- !u!1 &1233305147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1579,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5426510, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 13783410, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1612,8 +1618,8 @@ GameObject:
   - component: {fileID: 1463912282}
   - component: {fileID: 1463912283}
   - component: {fileID: 1463912284}
-  - component: {fileID: 1463912285}
   - component: {fileID: 1463912286}
+  - component: {fileID: 1463912287}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Ball
@@ -1784,22 +1790,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1463912285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463912275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ebc90a79695304f9b164497db29109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1159739508}
-  ballTransform: {fileID: 1463912281}
-  ballOffset: {x: 0, y: 0, z: 0}
-  ballRotation: {x: 0, y: 0, z: 0}
 --- !u!82 &1463912286
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1896,6 +1886,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1463912287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463912275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5d433a61228e44a9e13ba43f57c3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  questionManager: {fileID: 0}
 --- !u!1001 &1539010235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1995,8 +1999,8 @@ GameObject:
   - component: {fileID: 1561472894}
   - component: {fileID: 1561472895}
   - component: {fileID: 1561472896}
-  - component: {fileID: 1561472897}
   - component: {fileID: 1561472898}
+  - component: {fileID: 1561472899}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Ball
@@ -2167,22 +2171,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1561472897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561472887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ebc90a79695304f9b164497db29109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 424434539}
-  ballTransform: {fileID: 1561472893}
-  ballOffset: {x: 0, y: 0, z: 0}
-  ballRotation: {x: 0, y: 0, z: 0}
 --- !u!82 &1561472898
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2279,6 +2267,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1561472899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561472887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5d433a61228e44a9e13ba43f57c3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  questionManager: {fileID: 0}
 --- !u!1 &1644310911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,8 +2894,8 @@ GameObject:
   - component: {fileID: 2106508391}
   - component: {fileID: 2106508392}
   - component: {fileID: 2106508393}
-  - component: {fileID: 2106508394}
   - component: {fileID: 2106508395}
+  - component: {fileID: 2106508396}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Ball
@@ -3064,22 +3066,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2106508394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106508384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ebc90a79695304f9b164497db29109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 424434539}
-  ballTransform: {fileID: 2106508390}
-  ballOffset: {x: 0, y: 0, z: 0}
-  ballRotation: {x: 0, y: 0, z: 0}
 --- !u!82 &2106508395
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3176,6 +3162,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2106508396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106508384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5d433a61228e44a9e13ba43f57c3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  questionManager: {fileID: 0}
 --- !u!1001 &1277974605526953929
 PrefabInstance:
   m_ObjectHideFlags: 0

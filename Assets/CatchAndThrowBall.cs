@@ -9,6 +9,7 @@ public class CatchAndThrowBall : MonoBehaviour
     private bool ballCaught = false;
     private GameObject caughtBall;
     public GameObject popupCanvas; // Reference to the Canvas GameObject
+    public float throwForce = 10f; // Adjust the throw force as needed
 
     void Update()
     {
@@ -22,7 +23,7 @@ public class CatchAndThrowBall : MonoBehaviour
                     ballCaught = true;
                     caughtBall = collider.gameObject;
                     Rigidbody ballRB = caughtBall.GetComponent<Rigidbody>();
-                    ballRB.isKinematic = true;
+                    ballRB.isKinematic = true; // Disable physics for the caught ball
                     caughtBall.layer = 8; // Set to a valid layer index within the range [0...31]
                     caughtBall.transform.parent = transform;
                     caughtBall.transform.localPosition = Vector3.zero;
@@ -30,48 +31,38 @@ public class CatchAndThrowBall : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Vector3 throwDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-                ThrowBall(throwDirection);
-            }
-        }
     }
 
-
-    void ThrowBall(Vector3 direction)
-    {
-        Rigidbody ballRB = caughtBall.GetComponent<Rigidbody>();
-        ballRB.isKinematic = false;
-
-        caughtBall.layer = LayerMask.NameToLayer("Default");
-
-        // Detach the ball from the catcher
-        caughtBall.transform.parent = null;
-
-        // Apply force to throw the ball
-        ballRB.velocity = direction * 10f; // Adjust the force as needed
-
-        // Reset ballCaught flag
-        ballCaught = false;
-
-        // Reset reference to caughtBall
-        caughtBall = null;
-
-        HidePopup(); // Hide the popup window when the ball is thrown
-    }
-
-    // Method to show the popup window (enable the Canvas)
     void ShowPopup()
     {
-        popupCanvas.SetActive(true);
+        // Show the popup canvas
+        if (popupCanvas != null)
+        {
+            popupCanvas.SetActive(true);
+        }
     }
 
     // Method to hide the popup window (disable the Canvas)
     void HidePopup()
     {
-        popupCanvas.SetActive(false);
+        if (popupCanvas != null)
+        {
+            popupCanvas.SetActive(false);
+        }
+    }
+
+    void ThrowBall(Vector3 direction)
+    {
+        if (ballCaught && caughtBall != null)
+        {
+            Rigidbody ballRB = caughtBall.GetComponent<Rigidbody>();
+            ballRB.isKinematic = false; // Enable physics for the thrown ball
+            caughtBall.layer = LayerMask.NameToLayer("Default"); // Reset the layer
+            caughtBall.transform.parent = null; // Detach the ball from the catcher
+            ballRB.velocity = direction * throwForce; // Apply force to throw the ball
+            ballCaught = false; // Reset ballCaught flag
+            caughtBall = null; // Reset reference to caughtBall
+            HidePopup(); // Hide the popup window when the ball is thrown
+        }
     }
 }
