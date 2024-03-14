@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class BallInteraction : MonoBehaviour
 {
-    // Reference to the player object
-    public Player player;
-
-    // Reference to the question manager
-    public QuestionManager questionManager;
+    // Create an instance of the QuestionManager class
+    private QuestionManager questionManager;
 
     // Flag to track if the ball is caught
     private bool ballCaught = false;
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == player.gameObject) // Player catches the ball
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null && !ballCaught) // Player catches the ball
         {
             // Increase player's life
             player.IncreaseLife();
@@ -31,7 +27,8 @@ public class BallInteraction : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (!ballCaught && other.gameObject == player.gameObject) // Player fails to catch the ball
+        Player player = other.gameObject.GetComponent<Player>();
+        if (player != null && !ballCaught) // Player fails to catch the ball
         {
             // Ask a question
             string question = questionManager.GetRandomQuestion();
@@ -47,4 +44,3 @@ public class BallInteraction : MonoBehaviour
         }
     }
 }
-
