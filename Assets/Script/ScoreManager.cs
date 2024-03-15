@@ -1,20 +1,86 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    internal static ScoreManager instance;
+    internal static ScoreManager instance; // Singleton instance
 
-    // Start is called before the first frame update
-    void Start()
+    public Text player1ScoreText; // Reference to the UI Text element for Player 1 score
+    public Text player2ScoreText; // Reference to the UI Text element for Player 2 score
+    public Text timerText; // Reference to the UI Text element for displaying the timer
+
+    public float gameDuration = 60f; // Duration of the game in seconds
+    private float timer; // Timer variable
+
+    private int player1Score = 0; // Player 1 score
+    private int player2Score = 0; // Player 2 score
+
+    private void Awake()
     {
-        
+        // Ensure only one instance of ScoreManager exists
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject); // Destroy duplicate instances
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        timer = gameDuration; // Initialize timer
+        UpdateScoreText(); // Update score text
+    }
+
+    private void Update()
+    {
+        // Update the timer
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            UpdateTimerText();
+        }
+        else
+        {
+            // Game over, handle end game logic here
+            Debug.Log("Game Over!");
+        }
+    }
+
+    // Method to update Player 1 score
+    public void UpdatePlayer1Score(int points)
+    {
+        player1Score += points;
+        UpdateScoreText();
+    }
+
+    // Method to update Player 2 score
+    public void UpdatePlayer2Score(int points)
+    {
+        player2Score += points;
+        UpdateScoreText();
+    }
+
+    // Method to handle when Player 1 hits the ball
+    public void Player1HitBall()
+    {
+        // Implement your scoring logic here for when Player 1 hits the ball
+        // For example, you can increment Player 1's score
+        UpdatePlayer1Score(1); // Increment Player 1's score by 1
+    }
+
+    // Method to update the timer text
+    private void UpdateTimerText()
+    {
+        int minutes = Mathf.FloorToInt(timer / 60f);
+        int seconds = Mathf.FloorToInt(timer % 60f);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    // Method to update the score text
+    private void UpdateScoreText()
+    {
+        player1ScoreText.text = "Player 1: " + player1Score;
+        player2ScoreText.text = "Player 2: " + player2Score;
     }
 }
