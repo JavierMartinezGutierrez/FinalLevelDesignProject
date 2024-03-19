@@ -588,9 +588,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf22da56197404645a44cdf227d50332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catchKey: 108
+  player1CatchKey: 101
+  player2CatchKey: 111
   catchRange: 2
   throwForce: 5
+  player1StartPos: {fileID: 424434539}
+  player2StartPos: {fileID: 1159739508}
 --- !u!114 &424434556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,9 +1337,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf22da56197404645a44cdf227d50332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catchKey: 114
+  player1CatchKey: 101
+  player2CatchKey: 111
   catchRange: 2
   throwForce: 5
+  player1StartPos: {fileID: 424434539}
+  player2StartPos: {fileID: 1159739508}
 --- !u!114 &1159739526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3591,15 +3597,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 226.78558
+      value: 72.52481
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -430.39697
+      value: 6.6345215
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -384.3388
+      value: -45.671906
       objectReference: {fileID: 0}
     - target: {fileID: 2973944401768875102, guid: 4badad363a3b1c145b51558ef68cc135, type: 3}
       propertyPath: m_LocalRotation.w
