@@ -1,7 +1,7 @@
 using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class MultipleChoice : MonoBehaviour
 {
@@ -40,6 +40,7 @@ public class MultipleChoice : MonoBehaviour
 
         for (int i = 0; i < answerButtons.Length; i++)
         {
+            // Set the text of answer buttons
             answerButtons[i].GetComponentInChildren<Text>().text = currentQuestion.answers[i];
         }
 

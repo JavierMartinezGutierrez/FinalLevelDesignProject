@@ -4,69 +4,88 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public KeyCode player1CatchKey = KeyCode.E; // Player 1's catch/throw key
-    public KeyCode player2CatchKey = KeyCode.O; // Player 2's catch/throw key
-    public float catchRange = 2f; // Define the range within which a player can catch the ball
+    public KeyCode catchKey = KeyCode.E; // Define the key to catch/throw the ball
+    public float catchRange = 2f; // Define the range within which the player can catch the ball
     public float throwForce = 10f; // Define the force with which the ball is thrown
 
-    public Transform player1StartPos; // Starting position for Player 1
-    public Transform player2StartPos; // Starting position for Player 2
-
+    private Rigidbody rb;
     private GameObject ball;
-    private bool player1IsHoldingBall = false;
-    private bool player2IsHoldingBall = false;
+    private bool isHoldingBall = false;
 
     void Start()
     {
-        ball = GameObject.FindWithTag("Ball"); // Assuming the ball has a tag "Ball"
+        rb = GetComponent<Rigidbody>();
+        // Find the ball GameObject in the scene
+        ball = GameObject.FindWithTag("Ball");
+        // Freeze the position and rotation of the ball
+        if (ball != null)
+        {
+            Rigidbody ballRb = ball.GetComponent<Rigidbody>();
+            ballRb.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
     void Update()
     {
-        HandlePlayerInput(player1CatchKey, ref player1IsHoldingBall, player1StartPos.position);
-        HandlePlayerInput(player2CatchKey, ref player2IsHoldingBall, player2StartPos.position);
-    }
-
-    void HandlePlayerInput(KeyCode catchKey, ref bool isHoldingBall, Vector3 startPos)
-    {
+        // Check if the player presses the catch key
         if (Input.GetKeyDown(catchKey))
         {
+            // If the player is not holding the ball
             if (!isHoldingBall)
             {
-                if (IsBallInRange(startPos))
+                // Check if the ball is in range
+                if (IsBallInRange())
                 {
+                    // Grab the ball
                     GrabBall();
-                    isHoldingBall = true;
                 }
             }
+            // If the player is holding the ball
             else
             {
+                // Throw the ball
                 ThrowBall();
-                isHoldingBall = false;
             }
         }
     }
 
-    bool IsBallInRange(Vector3 startPos)
+    // Check if the ball is within the catch range of the player
+    bool IsBallInRange()
     {
-        float distance = Vector3.Distance(startPos, ball.transform.position);
+        if (ball == null)
+            return false;
+        float distance = Vector3.Distance(transform.position, ball.transform.position);
         return distance <= catchRange;
     }
 
+    // Grab the ball
     void GrabBall()
     {
+        // Set the player as the parent of the ball
         ball.transform.SetParent(transform);
 
+        // Disable the ball's Rigidbody so it doesn't fall or collide with other objects
         Rigidbody ballRigidbody = ball.GetComponent<Rigidbody>();
         ballRigidbody.isKinematic = true;
+
+        // Set the flag to indicate that the player is holding the ball
+        isHoldingBall = true;
     }
 
+    // Throw the ball
     void ThrowBall()
     {
+        // Detach the ball from the player
         ball.transform.SetParent(null);
 
+        // Enable the ball's Rigidbody so it can move freely
         Rigidbody ballRigidbody = ball.GetComponent<Rigidbody>();
         ballRigidbody.isKinematic = false;
+
+        // Apply a force to the ball in the forward direction of the player
         ballRigidbody.velocity = transform.forward * throwForce;
+
+        // Reset the flag to indicate that the player is no longer holding the ball
+        isHoldingBall = false;
     }
 }

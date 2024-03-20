@@ -4,43 +4,74 @@ using UnityEngine;
 
 public class BallInteraction : MonoBehaviour
 {
-    // Create an instance of the QuestionManager class
-    private QuestionManager questionManager;
+    public KeyCode catchThrowKey; // Define the key for catching/throwing
+    public float catchRange = 2f; // Define the range within which the player can catch the ball
+    public float throwForce = 10f; // Define the force with which the ball is thrown
 
-    // Flag to track if the ball is caught
-    private bool ballCaught = false;
+    public Canvas questionCanvas; // Reference to the canvas for displaying questions
 
-    void OnCollisionEnter(Collision collision)
+    private Rigidbody rb;
+    private GameObject ball;
+    private bool isHoldingBall = false;
+
+    void Start()
     {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null && !ballCaught) // Player catches the ball
+        rb = GetComponent<Rigidbody>();
+        ball = GameObject.FindWithTag("Ball"); // Assuming the ball has a tag "Ball"
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(catchThrowKey))
         {
-            // Increase player's life
-            player.IncreaseLife();
-
-            // Enable player to throw the ball back
-            player.CanThrowBall = true;
-
-            ballCaught = true;
+            if (!isHoldingBall)
+            {
+                if (IsBallInRange())
+                {
+                    GrabBall();
+                }
+            }
+            else
+            {
+                ThrowBall();
+            }
         }
     }
 
-    void OnTriggerStay(Collider other)
+    bool IsBallInRange()
     {
-        Player player = other.gameObject.GetComponent<Player>();
-        if (player != null && !ballCaught) // Player fails to catch the ball
+        float distance = Vector3.Distance(transform.position, ball.transform.position);
+        return distance <= catchRange;
+    }
+
+    void GrabBall()
+    {
+        ball.transform.SetParent(transform);
+        Rigidbody ballRigidbody = ball.GetComponent<Rigidbody>();
+        ballRigidbody.isKinematic = true;
+        isHoldingBall = true;
+    }
+
+    void ThrowBall()
+    {
+        ball.transform.SetParent(null);
+        Rigidbody ballRigidbody = ball.GetComponent<Rigidbody>();
+        ballRigidbody.isKinematic = false;
+        ballRigidbody.velocity = transform.forward * throwForce;
+        isHoldingBall = false;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) // Check if collided with another player
         {
-            // Ask a question
-            string question = questionManager.GetRandomQuestion();
-            bool answerCorrect = player.AnswerQuestion(question);
-
-            if (!answerCorrect)
-            {
-                // Deduct a point from player's score if answer is incorrect
-                player.LosePoint();
-            }
-
-            ballCaught = true;
+            DisplayQuestion();
         }
+    }
+
+    void DisplayQuestion()
+    {
+        // Activate the canvas to display the question
+        questionCanvas.gameObject.SetActive(true);
     }
 }
