@@ -65,9 +65,11 @@ public class BallInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check if collided with another player
         {
+            Debug.Log("Collision with another player detected!"); // Add this debug log
             DisplayQuestion();
         }
     }
+
 
     void DisplayQuestion()
     {
