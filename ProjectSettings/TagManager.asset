@@ -11,6 +11,8 @@ TagManager:
   - AI
   - Player2
   - Throwable
+  - QuestionCanvas
+  - ScoreBoard
   layers:
   - Default
   - TransparentFX

@@ -54,6 +54,8 @@ public class MultipleChoice : MonoBehaviour
             if (answerIndex == questions[currentQuestionIndex].correctAnswerIndex)
             {
                 Debug.Log("Correct!");
+                // Here, you can access the ScoreManager to award points for a correct answer
+                ScoreManager.instance.IncreaseScore(1); // Example: Award 1 point for a correct answer
             }
             else
             {
@@ -61,5 +63,18 @@ public class MultipleChoice : MonoBehaviour
             }
             popupWindow.SetActive(false);
         }
+    }
+
+    // Method to handle when the player gets hit with the ball
+    public void PlayerHit()
+    {
+        // Implement your logic for what happens when the player gets hit with the ball
+        // For example, you can reduce the player's health, deduct points, or trigger other events
+        Debug.Log("Player got hit with the ball!");
+
+        // Here, you can access the ScoreManager to deduct points
+        ScoreManager.instance.DecreaseScore(1); // Example: Deduct 1 point from the player who got hit
+
+        // You can also trigger other events, such as playing a sound effect, showing an animation, etc.
     }
 }

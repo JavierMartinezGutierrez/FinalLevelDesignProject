@@ -18,6 +18,15 @@ public class BallInteraction : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         ball = GameObject.FindWithTag("Ball"); // Assuming the ball has a tag "Ball"
+
+        if (questionCanvas == null)
+        {
+            Debug.LogError("Question canvas reference is not set!");
+        }
+        else
+        {
+            questionCanvas.gameObject.SetActive(false); // Ensure canvas is initially deactivated
+        }
     }
 
     void Update()
@@ -65,11 +74,10 @@ public class BallInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Check if collided with another player
         {
-            Debug.Log("Collision with another player detected!"); // Add this debug log
+            Debug.Log("Collision with another player detected!"); // Debug log to verify collision detection
             DisplayQuestion();
         }
     }
-
 
     void DisplayQuestion()
     {

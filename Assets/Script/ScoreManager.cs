@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class ScoreManager : MonoBehaviour
 
     public float gameDuration = 60f; // Duration of the game in seconds
     private float timer; // Timer variable
+
+    private bool gameIsOver = false; // Flag to track whether the game is over
 
     private int player1Score = 0; // Player 1 score
     private int player2Score = 0; // Player 2 score
@@ -34,17 +37,29 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        // Update the timer
-        if (timer > 0)
+        // Check if the game is over
+        if (!gameIsOver)
         {
-            timer -= Time.deltaTime;
-            UpdateTimerText();
+            // Update the timer
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+                UpdateTimerText();
+            }
+            else
+            {
+                // Game over, handle end game logic here
+                EndGame();
+            }
         }
-        else
-        {
-            // Game over, handle end game logic here
-            Debug.Log("Game Over!");
-        }
+    }
+
+    // Method to end the game
+    private void EndGame()
+    {
+        gameIsOver = true;
+        // Stop any game-related activities (e.g., disable player input, show game over screen, etc.)
+        Debug.Log("Game Over!");
     }
 
     // Method to update Player 1 score
@@ -69,6 +84,16 @@ public class ScoreManager : MonoBehaviour
         UpdatePlayer1Score(1); // Increment Player 1's score by 1
     }
 
+    // Method to award points when a player answers a question correctly
+    public void AnswerQuestionCorrectly(int playerNumber, int points)
+    {
+        if (playerNumber == 1)
+            UpdatePlayer1Score(points);
+        else if (playerNumber == 2)
+            UpdatePlayer2Score(points);
+        // You can extend this logic for more players if needed
+    }
+
     // Method to update the timer text
     private void UpdateTimerText()
     {
@@ -82,5 +107,19 @@ public class ScoreManager : MonoBehaviour
     {
         player1ScoreText.text = "Player 1: " + player1Score;
         player2ScoreText.text = "Player 2: " + player2Score;
+    }
+
+    // Method to increase the score by a certain amount
+    public void IncreaseScore(int pointsToAdd)
+    {
+        player1Score += pointsToAdd; // Assuming we are increasing Player 1's score for now
+        UpdateScoreText();
+    }
+
+    // Method to decrease the score by a certain amount
+    public void DecreaseScore(int pointsToDeduct)
+    {
+        player1Score -= pointsToDeduct; // Assuming we are decreasing Player 1's score for now
+        UpdateScoreText();
     }
 }
