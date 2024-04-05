@@ -88,12 +88,21 @@ public class ScoreManager : MonoBehaviour
     public void AnswerQuestionCorrectly(int playerNumber, int points)
     {
         if (playerNumber == 1)
-            UpdatePlayer1Score(points);
+            UpdatePlayer1Score(points); // Update Player 1's score
         else if (playerNumber == 2)
-            UpdatePlayer2Score(points);
-        // You can extend this logic for more players if needed
+            UpdatePlayer2Score(points); // Update Player 2's score
+                                        // You can extend this logic for more players if needed
+        Debug.Log("Player " + playerNumber + " answered correctly!");
     }
-
+    public void AnswerQuestionIncorrectly(int playerNumber, int points)
+    {
+        if (playerNumber == 1)
+            UpdatePlayer1Score(-points); // Deduct points from Player 1's score
+        else if (playerNumber == 2)
+            UpdatePlayer2Score(-points); // Deduct points from Player 2's score
+                                         // You can extend this logic for more players if needed
+        Debug.Log("Player " + playerNumber + " answered incorrectly!");
+    }
     // Method to update the timer text
     private void UpdateTimerText()
     {

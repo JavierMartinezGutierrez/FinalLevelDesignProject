@@ -61,20 +61,14 @@ public class MultipleChoice : MonoBehaviour
             {
                 Debug.Log("Incorrect!");
             }
-            popupWindow.SetActive(false);
+            popupWindow.SetActive(false); // Hide the question popup
         }
     }
 
     // Method to handle when the player gets hit with the ball
     public void PlayerHit()
     {
-        // Implement your logic for what happens when the player gets hit with the ball
-        // For example, you can reduce the player's health, deduct points, or trigger other events
-        Debug.Log("Player got hit with the ball!");
-
-        // Here, you can access the ScoreManager to deduct points
-        ScoreManager.instance.DecreaseScore(1); // Example: Deduct 1 point from the player who got hit
-
-        // You can also trigger other events, such as playing a sound effect, showing an animation, etc.
+        // Call the method to show a random question
+        ShowRandomQuestion();
     }
 }
