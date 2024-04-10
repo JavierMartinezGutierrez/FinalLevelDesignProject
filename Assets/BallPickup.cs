@@ -12,14 +12,14 @@ public class BallPickup : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     public float pickupDistance = 2f;
-    public Canvas questionCanvas;
+    public GameObject questionCanvas;
 
     private GameObject currentPlayer;
     private bool isPickedUp = false;
 
     void Start()
     {
-        questionCanvas.gameObject.SetActive(false);
+        questionCanvas.SetActive(false);
     }
 
     void Update()
@@ -49,6 +49,10 @@ public class BallPickup : MonoBehaviour
         isPickedUp = true;
         GetComponent<Rigidbody>().isKinematic = true;
         transform.SetParent(player.transform);
+
+        // Adjust the position of the ball relative to the player's hand
+        transform.localPosition = Vector3.zero;
+
         currentPlayer = player;
 
         // Check if the player got hit
@@ -58,6 +62,7 @@ public class BallPickup : MonoBehaviour
             ShowQuestionCanvas();
         }
     }
+
 
     void ShowQuestionCanvas()
     {

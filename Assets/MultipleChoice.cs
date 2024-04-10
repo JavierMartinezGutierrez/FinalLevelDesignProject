@@ -8,6 +8,8 @@ public class MultipleChoice : MonoBehaviour
     public GameObject popupWindow;
     public Text questionText;
     public Button[] answerButtons;
+    public Canvas questionCanvas;
+
 
     private List<Question> questions = new List<Question>();
     private int currentQuestionIndex = -1;
@@ -37,6 +39,7 @@ public class MultipleChoice : MonoBehaviour
         currentQuestionIndex = Random.Range(0, questions.Count);
         Question currentQuestion = questions[currentQuestionIndex];
         questionText.text = currentQuestion.question;
+        questionCanvas.gameObject.SetActive(true);
 
         for (int i = 0; i < answerButtons.Length; i++)
         {

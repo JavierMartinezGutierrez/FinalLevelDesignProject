@@ -104,7 +104,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             m_Jump = false; // Reset jump flag
         }
 
-        private void TryCatchBall()
+    
+    private void TryCatchBall()
         {
             // Logic to detect nearby ball and attempt to catch it
             // You can implement your own logic here

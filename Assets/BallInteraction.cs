@@ -9,6 +9,7 @@ public class BallInteraction : MonoBehaviour
     public float throwForce = 10f; // Define the force with which the ball is thrown
 
     public Canvas questionCanvas; // Reference to the canvas for displaying questions
+    public MultipleChoice multipleChoiceScript;
 
     private Rigidbody rb;
     private GameObject ball;
@@ -76,6 +77,7 @@ public class BallInteraction : MonoBehaviour
         {
             Debug.Log("Collision with another player detected!"); // Debug log to verify collision detection
             DisplayQuestion();
+            multipleChoiceScript.ShowRandomQuestion();
         }
     }
 
