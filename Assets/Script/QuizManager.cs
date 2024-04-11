@@ -1,77 +1,103 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 
 public class QuizManager : MonoBehaviour
 {
-    public List<Question> questions = new List<Question>();
+    public List<QuestionAndAnswers> QnA;
+    public GameObject[] options;
+    public int currentQuestion;
 
-    private IList<Question> GetQuestions()
+    public GameObject Quizpanel;
+    public GameObject GoPanel;
+
+    public Text QuestionTxt;
+    public Text ScoreTxt;
+
+    int TotalQuestions = 0;
+    public int score;
+
+    private void Start()
     {
-        return questions;
+        TotalQuestions = QnA.Count;
+        GoPanel.SetActive(true);
+        generateQuestion();
+        PopulateQuestions();
     }
 
-    public void DisplayQuestion(int questionIndex)
+    public void retry()
     {
-        Question question = questions[questionIndex];
-        Debug.Log(question.questionText);
-        foreach (string answer in question.answers)
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void GameOver()
+    {
+        Quizpanel.SetActive(false);
+        GoPanel.SetActive(true);
+        ScoreTxt.text = score + "/" + TotalQuestions;
+    }
+
+    public void correct()
+    {
+        score += 1;
+        QnA.RemoveAt(currentQuestion);
+        generateQuestion();
+    }
+
+    public void wrong()
+    {
+        QnA.RemoveAt(currentQuestion);
+        generateQuestion();
+    }
+
+    // Helper method to set the answers for the current question
+    void SetAnswers()
+    {
+        for (int i = 0; i < options.Length; i++)
         {
-            Debug.Log(answer);
+            options[i].GetComponent<AnswerScript>().isCorrect = false;
+            options[i].transform.GetChild(0).GetComponent<Text>().text = ((string[])QnA[currentQuestion].Answers)[i];
+
+            if (QnA[currentQuestion].CorrectAnswer == i + 1)
+            {
+                options[i].GetComponent<AnswerScript>().isCorrect = true;
+            }
         }
     }
 
-    public void AnswerQuestion(int questionIndex, int answerIndex)
+    // Method to generate a new question
+    void generateQuestion()
     {
-        Question question = questions[questionIndex];
-
-        if (answerIndex == question.correctAnswerIndex)
+        if (QnA.Count > 0)
         {
-            // The answer is correct
-            Debug.Log("Correct!");
+            // Handle when all questions have been answered
+            currentQuestion = Random.Range(0, QnA.Count);
+
+            QuestionTxt.text = QnA[currentQuestion].Question;
+            SetAnswers();
         }
         else
         {
-            // The answer is wrong
-            Debug.Log("Wrong!");
+            Debug.Log("Out of Questions");
+            GameOver();
         }
     }
 
-    internal void DisplayQuestion(string question)
+    void PopulateQuestions()
     {
-        throw new NotImplementedException();
-    }
-}
-public static class ListExtensions
-{
-    public static void Shuffle<T>(this IList<T> list)
-    {
-        System.Random rng = new System.Random();
-        int n = list.Count;
-        while (n > 1)
+        // Add questions and answers to the QnA list here programmatically
+        QnA.Add(new QuestionAndAnswers
         {
-            n--;
-            int k = rng.Next(n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
-        }
+            question = "What is 2 + 2?",
+            answers = new string[] { "1", "3", "4", "5" },
+            correctAnswerIndex = 2
+        });
+        // Add more questions as needed
     }
 }
 
-[System.Serializable]
-public class Question
-{
-    public string questionText;
-    public List<string> answers;
-    public int correctAnswerIndex;
 
-    public Question(string questionText, List<string> answers, int correctAnswerIndex)
-    {
-        this.questionText = questionText;
-        this.answers = answers;
-        this.correctAnswerIndex = correctAnswerIndex;
-    }
-}
+

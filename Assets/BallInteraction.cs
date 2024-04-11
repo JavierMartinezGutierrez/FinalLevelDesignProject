@@ -8,9 +8,6 @@ public class BallInteraction : MonoBehaviour
     public float catchRange = 2f; // Define the range within which the player can catch the ball
     public float throwForce = 10f; // Define the force with which the ball is thrown
 
-    public Canvas questionCanvas; // Reference to the canvas for displaying questions
-    public MultipleChoice multipleChoiceScript;
-
     private Rigidbody rb;
     private GameObject ball;
     private bool isHoldingBall = false;
@@ -19,15 +16,6 @@ public class BallInteraction : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         ball = GameObject.FindWithTag("Ball"); // Assuming the ball has a tag "Ball"
-
-        if (questionCanvas == null)
-        {
-            Debug.LogError("Question canvas reference is not set!");
-        }
-        else
-        {
-            questionCanvas.gameObject.SetActive(false); // Ensure canvas is initially deactivated
-        }
     }
 
     void Update()
@@ -76,14 +64,6 @@ public class BallInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) // Check if collided with another player
         {
             Debug.Log("Collision with another player detected!"); // Debug log to verify collision detection
-            DisplayQuestion();
-            multipleChoiceScript.ShowRandomQuestion();
         }
-    }
-
-    void DisplayQuestion()
-    {
-        // Activate the canvas to display the question
-        questionCanvas.gameObject.SetActive(true);
     }
 }
