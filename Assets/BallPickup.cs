@@ -19,11 +19,19 @@ public class BallPickup : MonoBehaviour
 
     void Start()
     {
+        // Ensure that the questionCanvas is initially inactive
         questionCanvas.SetActive(false);
     }
 
     void Update()
     {
+        // Check for the 'H' key press regardless of whether the ball is picked up or not
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            ShowQuestionCanvas();
+        }
+
+        // Check for ball pickup if it's not already picked up
         if (!isPickedUp)
         {
             float distanceToPlayer1 = Vector3.Distance(transform.position, player1.transform.position);
@@ -40,6 +48,7 @@ public class BallPickup : MonoBehaviour
         }
         else
         {
+            // If the ball is picked up, move it to the position of the current player
             transform.position = currentPlayer.transform.position;
         }
     }
@@ -49,23 +58,13 @@ public class BallPickup : MonoBehaviour
         isPickedUp = true;
         GetComponent<Rigidbody>().isKinematic = true;
         transform.SetParent(player.transform);
-
-        // Adjust the position of the ball relative to the player's hand
         transform.localPosition = Vector3.zero;
-
         currentPlayer = player;
-
-        // Check if the player got hit
-        // For demonstration purposes, let's assume the player gets hit when 'H' key is pressed
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            ShowQuestionCanvas();
-        }
     }
-
 
     void ShowQuestionCanvas()
     {
-        questionCanvas.gameObject.SetActive(true);
+        // Show the question canvas
+        questionCanvas.SetActive(true);
     }
 }
