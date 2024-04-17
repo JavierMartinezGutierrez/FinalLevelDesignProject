@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class OptionsButtons : MonoBehaviour
 {
     public Slider volumeSlider;
@@ -58,7 +58,9 @@ public class OptionsButtons : MonoBehaviour
         // Implement code to return to the main menu
         Debug.Log("Returning to main menu");
         // Add your code to switch scenes or handle main menu navigation.
+        SceneManager.LoadScene("MainMenu"); // Replace "MainMenu" with the name of your main menu scene
     }
+  
 }
 
 public enum Difficulty

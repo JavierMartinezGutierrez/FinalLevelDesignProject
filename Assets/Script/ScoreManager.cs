@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class ScoreManager : MonoBehaviour
 {
@@ -131,4 +133,5 @@ public class ScoreManager : MonoBehaviour
         player1Score -= pointsToDeduct; // Assuming we are decreasing Player 1's score for now
         UpdateScoreText();
     }
+
 }

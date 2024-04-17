@@ -14,38 +14,37 @@ public class ResultsScreenManager : MonoBehaviour
     public int playerScore = 0;
     public int computerPlayerScore = 0;
     public int secondPlayerScore = 0;
-   
 
-    public int PlayerScore
-    {
-        get { return playerScore; }
-        set { playerScore = value; }
-    }
-
-    public int ComputerPlayerScore
-    {
-        get { return computerPlayerScore; }
-        set { computerPlayerScore = value; }
-    }
-
-    public int SecondPlayerScore
-    {
-        get { return secondPlayerScore; }
-        set { secondPlayerScore = value; }
-    }
-
-    
-
+    public Button nextLevelButton; // Reference to the next level button
 
     public void Retry()
     {
         // Reload the current scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ReturnToMenu()
     {
         // Load the menu scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu");
     }
+
+    public void LoadNextLevel()
+    {
+        // Implement logic to determine the next level to load
+        // For example:
+        // SceneManager.LoadScene("Level2");
+    }
+
+    private void Start()
+    {
+        // Ensure the next level button is disabled at the start
+        if (nextLevelButton != null)
+        {
+            nextLevelButton.onClick.AddListener(LoadNextLevel);
+            nextLevelButton.gameObject.SetActive(false);
+        }
+    }
+
+    // Other methods for updating UI and managing scores...
 }
